@@ -1,0 +1,108 @@
+\documentclass[%
+master,         % тип документа
+natbib,         % использовать пакет natbib для "сжатия" цитирований
+subf,           % использовать пакет subcaption для вложенной нумерации рисунков
+href,           % использовать пакет hyperref для создания гиперссылок
+colorlinks=true % цветные гиперссылки
+%,fixint=false  % отключить прямые знаки интегралов
+%,times         % шрифт Times как основной
+]{disser}
+
+\usepackage[
+  a4paper, mag=1000,
+  left=2.5cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
+]{geometry}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+%\usepackage{tabularx,longtable}
+\ifpdf\usepackage{epstopdf}\fi
+
+% Номера страниц снизу и по центру
+\pagestyle{footcenter}
+\chapterpagestyle{footcenter}
+
+% Точка с запятой в качестве разделителя между номерами цитирований
+%\setcitestyle{semicolon}
+
+% Использовать полужирное начертание для векторов
+\let\vec=\mathbf
+
+% Включать подсекции в оглавление
+\setcounter{tocdepth}{2}
+
+\graphicspath{{fig/}}
+
+\begin{document}
+
+% Переопределение стандартных заголовков
+\def\contentsname{Содержание}
+\def\conclusionname{Выводы}
+%\def\bibname{Литература}
+
+\institution{Министерство образования и науки Российской Федерации
+\\
+Федеральное государственное автономное образовательное учреждение высшего профессионального образования 
+«Московский физико-технический институт 
+(государственный университет)»
+\\
+ФАКУЛЬТЕТ УПРАВЛЕНИЯ И ПРИКЛАДНОЙ МАТЕМАТИКИ
+КАФЕДРА ВЫЧИСЛИТЕЛЬНОЙ МАТЕМАТИКИ
+\\
+(Специализация «Прикладные вычислительные модели и программные комплексы»)}
+
+% Имя лица, допускающего к защите (зав. кафедрой)
+\apname{{Холодов А.С}}
+
+\title{ДИССЕРТАЦИЯ\\[-14pt]на соискание ученой степени\\МАГИСТРА}
+
+\topic{Маршевый метод решения задачи переноса излучения}
+
+% Автор
+\author       {Павлова Екатерина Сергеевна} % ФИО
+\group        {971} % Группа
+\coursenum    {111111} % Номер направления
+\course       {Название направления}
+\masterprognum{111111} % Номер магистерской программы
+\masterprog   {Название программы}
+
+% Научный руководитель
+\sa      {Скалько Юрий Иванович}
+\sastatus{к.ф.-м.н.}
+% Второй научный руководитель
+%\sasnd      {ФИО руководителя}
+%\sasndstatus{д.~ф.-м.~н., ст.~н.~с.}
+
+% Рецензент
+\rev      {ФИО рецензента}
+\revstatus{д.~ф.-м.~н., в.~н.~с.}
+
+% Город и год
+\city{Москва}
+\date{\number\year}
+
+\maketitle
+
+% Содержание
+\tableofcontents
+% Введение
+\input{intro}
+% Глава 1
+\input{1}
+% Глава 2
+\input{2}
+% Глава 3
+\input{3}
+
+% Заключение
+\input{concl}
+
+% Список литературы
+\bibliography{thesis}
+\bibliographystyle{utf8gost71u}
+
+% Приложения
+\appendix
+\input{app-a}
+
+\end{document}
