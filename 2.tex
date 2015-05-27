@@ -39,12 +39,12 @@ U = \sum_{i=1}^n w_i I_i, \quad
 Каждое из уравнений \eqref{8} является гиперболическим и для его решения можно применить сеточно-характеристический метод. Для вычисления интенсивности $I_{\nu,i}$ в точке $p$ выпускается луч в направлении $-\vec\omega_i$ до пересечения с первой гранью. В точке пересечения $\vec r^*$ вычисляется интерполированное по вершинам грани значение интенсивности $I_{\nu, i}^* = \sum_{j = q,r,s} \alpha_jI_{\nu, i}^j$.
 (картинка). Далее, $I_{\nu, i}^p$ вычисляется из решения одномерного уравнения переноса   
 \begin {equation}
-I_{\nu}(s) = \int_{s_0}^s\varkappa'_{\nu}I_{\nu p} \exp\Big[-\int_{s'}^s\varkappa'_{\nu}ds''\Big]ds' + I_{\nu_0} \exp\Big[-\int_{s_0}^s \varkappa'_{\nu}ds''\Big].
+I_{\nu}(s) = \int_{s_0}^s\varkappa'_{\nu}I_{\nu p} \exp\Big[-\int_{s'}^s\varkappa'_{\nu}ds''\Big]ds' + I_{\nu,0} \exp\Big[-\int_{s_0}^s \varkappa'_{\nu}ds''\Big].
 \end {equation}
 
 В простом случае, если в тетраэдре $\varkappa = \operatorname{const}$, формула упрощается до 
 \begin {equation}
-I_\nu (s) = I_{\nu p} (1 - e^{-\varkappa_\nu \Delta}) + I_\nu_0e^{-\varkappa_\nu \Delta},
+I_\nu (s) = I_{\nu p} (1 - e^{-\varkappa_\nu \Delta}) + I_{\nu,0}e^{-\varkappa_\nu \Delta},
 \end {equation}
 при $\Delta = s - s_0$.
 (картинка слайд 7)
