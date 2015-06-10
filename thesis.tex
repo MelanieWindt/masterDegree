@@ -18,6 +18,11 @@ colorlinks=true % цветные гиперссылки
 %\usepackage{tabularx,longtable}
 \ifpdf\usepackage{epstopdf}\fi
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\renewcommand{\listalgorithmname}{Список алгоритмов}
+\floatname{algorithm}{Алгоритм \textnumero\hspace{-3pt}}
+
 % Номера страниц снизу и по центру
 \pagestyle{footcenter}
 \chapterpagestyle{footcenter}
@@ -26,6 +31,7 @@ colorlinks=true % цветные гиперссылки
 %\setcitestyle{semicolon}
 
 % Использовать полужирное начертание для векторов
+\let\avec\vec
 \renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
 
 % Включать подсекции в оглавление
