@@ -1,1 +1,29 @@
-\chapter{Заголовок приложения}
+\chapter{Алгоритмы}
+
+\begin{algorithm}[ht!]
+\centering
+\begin{algorithmic}[1]
+\Function{ShiftToStable}{$e, Q$}
+\State $\lambda := 1$
+\State $\delta := \epsilon \cdot d(e)$
+\State $\vec r_M := $ \Call{MassCenter}{$e$}
+\For{каждой грани $f \in e$}
+\State $(\vec r_i, \dots) := $ \Call{VertexCoordinates}{$f$}
+\Comment Выбрать точку $\vec r_i \in f$
+\State $\vec n_i := $ \Call{FaceNormal}{$f$}
+\State $\vec r_{Q'} = \lambda \vec r_Q + (1 - \lambda) \vec r_{M}$
+\If{$(\vec r_i - \vec r_{Q'}, \vec n_i) > \delta$}
+\State \textbf{continue} \Comment Перейти к следующей грани
+\Else
+\State $\triangleright$ Найти точку пересечения отрезка $QM$ и плоскости
+\State $\lambda := \frac{\delta - (\vec r_i - \vec r_M, \vec n_i)}
+{(\vec r_Q - \vec r_M, \vec n_i)}$
+\EndIf
+\EndFor
+\State $\vec r_{Q'} = \lambda \vec r_Q + (1 - \lambda) \vec r_{M}$
+\State\Return{$Q'$}
+\EndFunction
+\end{algorithmic}
+\caption{Пример алгоритма}
+\label{alg:shift}
+\end{algorithm}
