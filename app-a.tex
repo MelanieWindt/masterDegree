@@ -3,27 +3,49 @@
 \begin{algorithm}[ht!]
 \centering
 \begin{algorithmic}[1]
-\Function{ShiftToStable}{$e, Q$}
-\State $\lambda := 1$
-\State $\delta := \epsilon \cdot d(e)$
-\State $\vec r_M := $ \Call{MassCenter}{$e$}
-\For{каждой грани $f \in e$}
-\State $(\vec r_i, \dots) := $ \Call{VertexCoordinates}{$f$}
-\Comment Выбрать точку $\vec r_i \in f$
-\State $\vec n_i := $ \Call{FaceNormal}{$f$}
-\State $\vec r_{Q'} = \lambda \vec r_Q + (1 - \lambda) \vec r_{M}$
-\If{$(\vec r_i - \vec r_{Q'}, \vec n_i) > \delta$}
-\State \textbf{continue} \Comment Перейти к следующей грани
-\Else
-\State $\triangleright$ Найти точку пересечения отрезка $QM$ и плоскости
-\State $\lambda := \frac{\delta - (\vec r_i - \vec r_M, \vec n_i)}
-{(\vec r_Q - \vec r_M, \vec n_i)}$
-\EndIf
+\Function{coloring}{$ $}
+\State $Q := $ \Call{initQueue}{$ $}
+\State $cnt$ := $|Q|$
+\While {$Q \neq \varnothing$}
+\State $t$ := \Call{Dequeue}{$Q$}
+\If {\Call{Colorable}{$Q$}}
+\State $color[t] := \Call{ChooseColor}{t}$
+\For{$t' \in \Call{UncoloredNeighbours}{t}$}
+\State \Call{Enqueue}{$Q, t'$}
 \EndFor
-\State $\vec r_{Q'} = \lambda \vec r_Q + (1 - \lambda) \vec r_{M}$
-\State\Return{$Q'$}
+\State $cnt := |Q|$
+\Else
+\State \Call{Enqueue}{$Q, t$}
+\State $cnt := cnt - 1$
+\EndIf
+\If{$cnt < 0$}
+\State \textbf{error} Обнаружен цикл
+\EndIf
+\EndWhile
 \EndFunction
 \end{algorithmic}
-\caption{Пример алгоритма}
-\label{alg:shift}
+\caption{Построение очереди тетраэдров.}
+\label{alg:1}
 \end{algorithm}
+
+Функция \textsc{InitQueue} помещает в очередь такие тетраэдры, у которых все входные грани являются граничными.
+
+Функция \textsc{Colorable} проверяет, можно ли покрасить рассматриваемый тетраэдр, для этого необходимо, чтобы все тетраэдры, граничащие с ним по входным граням, были покрашены. Если какая-то входная грань является граничной, то считается, что цвет отсутствующего тетраэдра равен $-1$. Функция \textsc{ChooseColor} выбирает максимальное значение цвета таких граничащих тетраэдров и увеличивает его на единицу. Это число и будет цветом рассматриваемого тетраэдра. 
+
+\begin{algorithm}[ht!]
+\centering
+\begin{algorithmic}[1]
+\Function{isOuter}{$\vec \Omega, face$}
+\State $flippedFace := \Call{Flip}{face}$
+\If {$index(face) > index(flippedFace)$}
+\State \Return $\vec \Omega \cdot normal(face) < 0$
+\Else 
+\State\Return $\vec \Omega \cdot normal(flippedFace) \geqslant 0$
+\EndIf
+\EndFunction
+\end{algorithmic}
+\caption{Алгоритм определения входящей грани}
+\label{alg:2}
+\end{algorithm}
+
+Для того, чтобы в соседних тетраэдрах одна и та же грань определялась однозначно, как входящая для одного и выходящая для другого, при определении предпочтение отдается грани с б\'{о}льшим номером.
