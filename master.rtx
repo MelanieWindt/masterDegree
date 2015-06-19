@@ -46,9 +46,9 @@
 
 \setlength\fieldhshift{8.5cm}
 
-\def\titlefont{\Large\bfseries}
+\def\titlefont{\large}
 \def\topiclabelfont{\large}
-\def\topicfont{\large\bfseries}
+\def\topicfont{\Large\bfseries}
 
 \thispagestyle{empty}
 \enlargethispage{1cm}
@@ -61,10 +61,9 @@
 
 \vskip\secondskip
 \begin{center}
-  {\titlefont\@title}
+  {\topicfont\@topic}  
   \vskip\thirdskip
-  {\topiclabelfont\topiclabel}
-  {\topicfont\@topic}
+  {\titlefont\@title}
 \end{center}
 \vskip\fourthskip
 \begin{tabbing}
