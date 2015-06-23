@@ -1,10 +1,10 @@
-\chapter{Алгоритмы}
+\chapter{Основные алгоритмы}
 
 \begin{algorithm}[ht!]
 \centering
 \begin{algorithmic}[1]
-\Function{coloring}{$ $}
-\State $Q := $ \Call{initQueue}{$ $}
+\Function{Coloring}{$ $}
+\State $Q := $ \Call{InitQueue}{$ $}
 \State $cnt$ := $|Q|$
 \While {$Q \neq \varnothing$}
 \State $t$ := \Call{Dequeue}{$Q$}
@@ -24,7 +24,7 @@
 \EndWhile
 \EndFunction
 \end{algorithmic}
-\caption{Построение очереди тетраэдров.}
+\caption{}
 \label{alg:1}
 \end{algorithm}
 
@@ -35,7 +35,7 @@
 \begin{algorithm}[ht!]
 \centering
 \begin{algorithmic}[1]
-\Function{isOuter}{$\vec \Omega, face$}
+\Function{IsOuter}{$\vec \Omega, face$}
 \State $flippedFace := \Call{Flip}{face}$
 \If {$index(face) > index(flippedFace)$}
 \State \Return $\vec \Omega \cdot normal(face) < 0$
@@ -44,8 +44,8 @@
 \EndIf
 \EndFunction
 \end{algorithmic}
-\caption{Алгоритм определения входной грани.}
+\caption{Алгоритм определения выходной грани.}
 \label{alg:2}
 \end{algorithm}
 
-Для того, чтобы в соседних тетраэдрах одна и та же грань определялась однозначно, как входная для одного и выходная для другого, при определении предпочтение отдается грани с б\'{о}льшим номером.
+Для того, чтобы в соседних тетраэдрах одна и та же грань однозначно определялась, как входная для одного и выходная для другого, при определении предпочтение отдается грани с б\'{о}льшим номером.
